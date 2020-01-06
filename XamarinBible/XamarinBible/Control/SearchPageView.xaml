@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.SearchPageView"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel"
+             xmlns:control="clr-namespace:XamarinBible.Control">
+
+    <ContentView.Content>
+        <Grid 
+              x:Name="layout"
+              BackgroundColor="{Binding BackgroundColor}"
+              RowSpacing="0"  
+              BindingContext="{Binding Source={x:Reference layout}, Path=Parent.BindingContext.SearchPageViewModel}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.065*"></RowDefinition>
+                <RowDefinition Height="0.005*"></RowDefinition>
+                <RowDefinition Height="0.93*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="성경" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                            <TapGestureRecognizer.CommandParameter>
+                                <x:Int32>
+                                    0
+                                </x:Int32>
+                            </TapGestureRecognizer.CommandParameter>
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Row="0" Grid.Column="1" Text="장" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                            <TapGestureRecognizer.CommandParameter>
+                                <x:Int32>
+                                    1
+                                </x:Int32>
+                            </TapGestureRecognizer.CommandParameter>
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Row="0" Grid.Column="2" Text="절" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                            <TapGestureRecognizer.CommandParameter>
+                                <x:Int32>
+                                    2
+                                </x:Int32>
+                            </TapGestureRecognizer.CommandParameter>
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <AbsoluteLayout Grid.Row="1" Grid.Column="0" >
+                <BoxView AbsoluteLayout.LayoutBounds="0,0.5,1,0.3" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#BDBDBD" />
+                <control:Indicator  AbsoluteLayout.LayoutBounds="0,0,0.334,1"
+                         AbsoluteLayout.LayoutFlags="All" Direction="{Binding DirectionScale}"  BackgroundColor="SkyBlue" VerticalOptions="FillAndExpand"></control:Indicator>
+            </AbsoluteLayout>
+
+
+            <control:CarouselLayout    
+                          x:Name="carousel"
+                          Grid.Row="2"  
+                          Grid.Column="0"
+                          ItemsSource="{Binding SearchPages}"
+                          SelectedIndex="{Binding Position}">
+                <control:CarouselLayout.ItemTemplate>
+                    <control:SearchTemplateSelector></control:SearchTemplateSelector>
+                </control:CarouselLayout.ItemTemplate>
+            </control:CarouselLayout>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

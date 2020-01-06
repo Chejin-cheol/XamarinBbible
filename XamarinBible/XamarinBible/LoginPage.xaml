@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinBible"
+             x:Class="XamarinBible.LoginPage"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel></vm:LoginViewModel>
+    </ContentPage.BindingContext>
+    <AbsoluteLayout
+    HorizontalOptions="FillAndExpand"
+    VerticalOptions="FillAndExpand">
+        <StackLayout 
+            x:Name="login"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Entry x:Name="usernameEntry" Placeholder="username" Text="{Binding Id , Mode=TwoWay}"/>
+
+            <Entry x:Name="passwordEntry" IsPassword="true" Text="{Binding Password , Mode=TwoWay}"/>
+            <Button Text="Login"  Clicked="LoginClick" />
+
+            <ActivityIndicator x:Name="indicator" Color="Red" IsRunning="False" />
+        </StackLayout>
+
+        <StackLayout 
+            x:Name="wait"
+            IsVisible="False"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <ActivityIndicator
+                x:Name="progress"
+                Color="Red" />
+        </StackLayout>
+        
+    </AbsoluteLayout>
+</ContentPage>

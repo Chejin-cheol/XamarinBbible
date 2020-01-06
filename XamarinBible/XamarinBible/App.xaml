@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:di="clr-namespace:XamarinBible.DI"
+             x:Class="XamarinBible.App">
+    <Application.Resources>
+        <di:DIContainer x:Key="DI"></di:DIContainer>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Page.SearchBiblePage"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+           
+             xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel">
+
+    <!--
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate x:Key="gridTemplate">
+                <ScrollView>
+                    <l:RepeatableWrapLayout ItemsSource="{Binding Items}" UniformColumns="4" IsSquare="True" >
+                        <l:RepeatableWrapLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding Value}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </DataTemplate>
+                        </l:RepeatableWrapLayout.ItemTemplate>
+                    </l:RepeatableWrapLayout>
+                </ScrollView>
+            </DataTemplate>
+
+            <DataTemplate x:Key="listTemplate">
+                <ListView ItemsSource="{Binding Items}" SeparatorVisibility="None" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Value}"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </DataTemplate>
+
+            <control:SearchTemplateSelector x:Key="searchTemplateSelector" ListTemplate="{StaticResource listTemplate}" GridTemplate="{StaticResource gridTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+-->
+<!--
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel>
+
+        </vm:SearchViewModel>
+    </ContentPage.BindingContext>
+-->
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.065*"></RowDefinition>
+                <RowDefinition Height="0.005*"></RowDefinition>
+                <RowDefinition Height="0.93*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>  
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="성경" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="Small" ></Label>
+                <Label Grid.Row="0" Grid.Column="1" Text="장" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="Small"></Label>
+                <Label Grid.Row="0" Grid.Column="2" Text="절" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="Small"></Label>
+            </Grid>
+
+            <AbsoluteLayout Grid.Row="1" Grid.Column="0" >
+                <BoxView AbsoluteLayout.LayoutBounds="0,0.5,1,0.3" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#BDBDBD" />
+                <control:Indicator  AbsoluteLayout.LayoutBounds="0,0,0.334,1"
+                         AbsoluteLayout.LayoutFlags="All" Direction="{Binding DirectionScale}"  BackgroundColor="SkyBlue" VerticalOptions="FillAndExpand"></control:Indicator>
+            </AbsoluteLayout>
+
+            <!--
+            <controls:CarouselViewControl     
+                          x:Name="carousel"
+                          Grid.Row="2"  
+                          Grid.Column="0"
+                          ItemsSource="{Binding SearchPages}"
+                          PositionSelectedCommand="{Binding PositionChangedCommand}"
+                          Position="{Binding Position,Mode=TwoWay}"
+                          IndicatorsShape="Square"
+                          IndicatorsTintColor="SkyBlue">
+                <controls:CarouselViewControl.ItemTemplate>
+                    <control:SearchTemplateSelector></control:SearchTemplateSelector>
+                </controls:CarouselViewControl.ItemTemplate>
+            </controls:CarouselViewControl>
+            -->
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

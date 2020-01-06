@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinBible.iOS", "XamarinBible.iOS.csproj", "{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Release|iPhone.Build.0 = Release|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{B4F2E72E-11A0-4A54-A8C1-7AC463F52207}.AppStore|iPhone.Build.0 = AppStore|iPhone
+	EndGlobalSection
+EndGlobal

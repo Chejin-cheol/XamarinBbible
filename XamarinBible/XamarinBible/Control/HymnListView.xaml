@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.HymnListView"
+             ItemsSource="{Binding Items}"
+             SeparatorVisibility="None">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell x:Name="item">
+                <StackLayout 
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference item} , Path=Parent.BindingContext.ItemClickCommand}" CommandParameter="{Binding Page}"/>
+                    </StackLayout.GestureRecognizers>
+                    
+                    <Label Text="{Binding Number}" TextColor="{Binding Source={x:Reference item} ,Path=Parent.BindingContext.OuterViewModel.TextColor}"></Label>
+                    <Label Text="{Binding Title}" TextColor="{Binding Source={x:Reference item} ,Path=Parent.BindingContext.OuterViewModel.TextColor}" />
+
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>

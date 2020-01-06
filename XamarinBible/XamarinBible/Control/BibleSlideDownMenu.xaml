@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.BibleSlideDownMenu"
+             xmlns:control="clr-namespace:XamarinBible.Control">
+  <ContentView.Content>
+        <StackLayout
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          BackgroundColor="#eeeeee">
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="+" FontSize="Large" Command="{Binding BibleSettingMenuCommand}" CommandParameter="font_up"/>
+                <Button Text="-" FontSize="Large" Command="{Binding BibleSettingMenuCommand}" CommandParameter="font_down" />
+            </StackLayout>
+            <Button x:Name="displayMode" Command="{Binding BibleSettingMenuCommand}" CommandParameter="display"></Button>
+
+            <FlexLayout  BindableLayout.ItemsSource="{Binding Languages}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="lang"
+                                Text="{Binding Kind}" 
+                                BackgroundColor="{Binding CheckedColor}" 
+                                Command="{Binding LanguageChanged}" 
+                                CommandParameter="{Binding Source={x:Reference lang} , Path=Parent.BindingContext}">
+                        </Button>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

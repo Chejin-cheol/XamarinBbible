@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Page.DetailBiblePage"
+             xmlns:local="clr-namespace:XamarinBible"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel"
+             x:Name="BiblePage"
+             BindingContext="{Binding BibleViewModel, Source={StaticResource DI} }">
+    <NavigationPage.TitleView>
+        <AbsoluteLayout
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+            <AbsoluteLayout
+                IsVisible="{Binding BiblePageOpen}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Button Text="성경" AbsoluteLayout.LayoutBounds="0,0, 0.2 ,1 " AbsoluteLayout.LayoutFlags="All" TextColor="{Binding CellTextColor}"
+                    BorderColor="Transparent" BackgroundColor="Transparent" FontAttributes="Bold"
+                    Command="{Binding NavigationBarCommand}" CommandParameter="search"/>
+                <Button Text="옵션" AbsoluteLayout.LayoutBounds="1,0, 0.2 ,1 " AbsoluteLayout.LayoutFlags="All" TextColor="{Binding CellTextColor}"
+                    BorderColor="Transparent" BackgroundColor="Transparent" FontAttributes="Bold"
+                    Command="{Binding NavigationBarCommand}" CommandParameter="setting"/>
+            </AbsoluteLayout>
+
+            <AbsoluteLayout
+                IsVisible="{Binding SearchPageOpen}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Button Text="뒤로" AbsoluteLayout.LayoutBounds="0,0, 0.2 ,1 " AbsoluteLayout.LayoutFlags="All" TextColor="{Binding CellTextColor}"
+                    BorderColor="Transparent" FontAttributes="Bold"
+                    Command="{Binding NavigationBarCommand}" CommandParameter="search"/>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+        
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <AbsoluteLayout
+            x:Name="container">
+            <control:BibleListView 
+                x:Name="bibleListView"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                SeparatorVisibility="None"
+                ItemsSource="{Binding  Bible}"
+                HasUnevenRows="True"
+                IsVisible="{Binding BiblePageOpen}"
+                ScrollPosition="{Binding ScrollPosition}"
+                ChildFontSize="{Binding FontSize}">
+
+                <control:BibleListView.ItemTemplate>
+                    <DataTemplate>
+                        <control:BibleViewCell></control:BibleViewCell>
+                    </DataTemplate>
+                </control:BibleListView.ItemTemplate>
+            </control:BibleListView>
+
+            <control:BibleOptionMenu x:Name="optionMeun" Open="{Binding OptionMenuOpen}"></control:BibleOptionMenu>
+            <control:BibleSlideUpMenu x:Name="sliderMenu"  SlideOpen="{Binding SlideOpen}"  ></control:BibleSlideUpMenu>
+            <control:BibleSlideDownMenu x:Name="slideDownMenu" SlideDownOpen="{Binding SlideDownOpen}" BackgroundColor="{Binding CellBackgroundColor}"></control:BibleSlideDownMenu>
+
+            <control:SearchPageView 
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding SearchPageOpen}">
+            </control:SearchPageView>
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

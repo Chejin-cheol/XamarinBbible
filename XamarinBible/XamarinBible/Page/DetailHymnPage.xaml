@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Page.DetailHymnPage"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+             xmlns:behaviors="clr-namespace:XamarinBible.Behaviors"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             Title="찬양"
+             BindingContext="{Binding HymnViewModel , Source={StaticResource DI} }">
+    
+    <NavigationPage.TitleView>
+        <AbsoluteLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <SearchBar 
+                x:Name="searchBar"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,.85,1"
+                Placeholder="장 혹은 제목을 입력하세요." 
+                Focused="OnSearchActivated">
+                <SearchBar.Behaviors>
+                    <behaviors:HymnSearchTextChange
+                        BindingContext="{Binding BindingContext.HymnPages[1] , Source={x:Reference searchBar}}"
+                        Matcher="{Binding BindingContext.MatchService , Source={x:Reference searchBar}}"/>
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <Button  
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="1,0,.15,1"
+                Command="{Binding CategoryVisibilityCommand}"/>
+
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid 
+              x:Name="layout"
+              BackgroundColor="{Binding BackgroundColor}"
+              RowSpacing="0"
+              AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.065*"></RowDefinition>
+                    <RowDefinition Height="0.005*"></RowDefinition>
+                    <RowDefinition Height="0.93*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="번호" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                                <TapGestureRecognizer.CommandParameter>
+                                    <x:Int32>
+                                        0
+                                    </x:Int32>
+                                </TapGestureRecognizer.CommandParameter>
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="1" Text="목록" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                                <TapGestureRecognizer.CommandParameter>
+                                    <x:Int32>
+                                        1
+                                    </x:Int32>
+                                </TapGestureRecognizer.CommandParameter>
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="2" Text="엘범" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding TextColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PageChangedCommand}" >
+                                <TapGestureRecognizer.CommandParameter>
+                                    <x:Int32>
+                                        2
+                                    </x:Int32>
+                                </TapGestureRecognizer.CommandParameter>
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <AbsoluteLayout Grid.Row="1" Grid.Column="0" >
+                    <BoxView AbsoluteLayout.LayoutBounds="0,0.5,1,0.3" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#BDBDBD" />
+                    <control:Indicator  AbsoluteLayout.LayoutBounds="0,0,0.334,1"
+                         AbsoluteLayout.LayoutFlags="All" Direction="{Binding DirectionScale}"  BackgroundColor="SkyBlue" VerticalOptions="FillAndExpand"></control:Indicator>
+                </AbsoluteLayout>
+
+                <controls:CarouselViewControl
+                          x:Name="carousel"
+                          Grid.Row="2"  
+                          Grid.Column="0"
+                          ItemsSource="{Binding HymnPages}"
+                          Position="{Binding Position}">
+                    <controls:CarouselViewControl.ItemTemplate>
+                        <control:HymnTemplateSelector></control:HymnTemplateSelector>
+                    </controls:CarouselViewControl.ItemTemplate>
+                </controls:CarouselViewControl>
+            </Grid>
+
+            <Grid
+                IsVisible="{Binding CategoryVisibility}"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="1,0,.36,.4"
+                BackgroundColor="#eeeeee">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.33*"/>
+                    <RowDefinition Height="0.33*"/>
+                    <RowDefinition Height="0.33*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Text="찬양" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Command="{Binding CategorySelectCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>
+                            1
+                        </x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+                <Button 
+                    Text="은혜와진리찬양" 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Command="{Binding CategorySelectCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>
+                            2
+                        </x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+                <Button 
+                    Text="어린이 찬양" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Command="{Binding CategorySelectCommand}">
+                    <Button.CommandParameter>
+                        <x:Int32>
+                            3
+                        </x:Int32>
+                    </Button.CommandParameter>
+                </Button>
+            </Grid>
+           
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.SearchGridItem"
+             xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts">
+    <ScrollView>
+    <l:RepeatableWrapLayout ItemsSource="{Binding Items}" UniformColumns="5" IsSquare="True" >
+        <l:RepeatableWrapLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label x:Name="item" Text="{Binding Value}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{Binding Source={x:Reference item} ,Path=Parent.BindingContext.OuterViewModel.TextColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference item} ,Path=Parent.BindingContext.ItemClickCommand}" CommandParameter="{Binding Source={x:Reference item} ,Path=Text}" ></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+            </DataTemplate>
+        </l:RepeatableWrapLayout.ItemTemplate>
+    </l:RepeatableWrapLayout>
+    </ScrollView>
+</StackLayout>

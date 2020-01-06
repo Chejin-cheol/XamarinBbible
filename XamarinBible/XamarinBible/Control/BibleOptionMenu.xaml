@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.BibleOptionMenu">
+  <ContentView.Content>
+        <AbsoluteLayout
+             BackgroundColor="{Binding CellBackgroundColor}"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+
+            <Button 
+                AbsoluteLayout.LayoutBounds="0,0,.1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Text="이전" 
+                Command="{Binding OptionMenuCommand}" CommandParameter="prev"
+                ></Button>
+
+            <Button 
+                AbsoluteLayout.LayoutBounds=".35,0,.1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Text="성경듣기"
+                Command="{Binding OptionMenuCommand}" CommandParameter="sermon"
+                ></Button>
+
+            <Button 
+                AbsoluteLayout.LayoutBounds=".55,0,.1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Text="노트"
+                Command="{Binding OptionMenuCommand}" CommandParameter="sermon"
+                ></Button>
+
+            <Button 
+                AbsoluteLayout.LayoutBounds="1,0,.1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Text="다음"
+                Command="{Binding OptionMenuCommand}" CommandParameter="next">
+            </Button>
+            
+        </AbsoluteLayout>
+  </ContentView.Content>
+</ContentView>

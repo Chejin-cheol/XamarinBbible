@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Page.AlbumPlayPage"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel"
+             xmlns:behavior="clr-namespace:XamarinBible.Behaviors"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#282828">
+
+    <ContentPage.BindingContext>
+        <vm:AlbumPlayViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <RelativeLayout>
+            <StackLayout BackgroundColor="#282828"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=0.07,Constant=0}" 
+            Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding GroupName}" TextColor="White" FontSize="Large"/>
+            </StackLayout>
+
+            <AbsoluteLayout 
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0.07,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=0.65,Constant=0}" >
+                <ListView
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    ItemsSource="{Binding PlayList}"
+                    BackgroundColor="#343434">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Number}" TextColor="White" FontSize="Medium"/>
+                                    <Label Text="{Binding Title}" TextColor="White" FontSize="Medium"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behavior:AlbumItemClick />
+                    </ListView.Behaviors>
+                </ListView>
+                <control:ShadowLine
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,0.01" />
+            </AbsoluteLayout>
+
+            
+            
+            <!-- 재생바 -->
+            <StackLayout BackgroundColor="#282828"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0.72,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=0.08,Constant=0}" 
+            Orientation="Horizontal"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding Name}" 
+                       TextColor="White" FontSize="Large" 
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            
+            <StackLayout BackgroundColor="#282828"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0.84,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=0.08,Constant=0}" >
+                <AbsoluteLayout>
+                    <Image
+                    Source="ic_player_prev.png"
+                    Aspect="AspectFit"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds=".3,0,.12,.8"/>
+                    <Image
+                    Source="{Binding PlayerIcon}"
+                    Aspect="AspectFit"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds=".5,0,.12,.8"
+                    BackgroundColor="Transparent">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ClickCommand}"
+                                CommandParameter="player"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image
+                    Source="ic_player_next.png"
+                    Aspect="AspectFit"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds=".7,0,.12,.8"/>
+                </AbsoluteLayout>
+            </StackLayout>
+            
+            <StackLayout BackgroundColor="#282828"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0.94,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=1,Constant=0}">
+                <AbsoluteLayout>
+                    <Label 
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,.1,1"
+                    Text="{Binding PositionText}"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center"/>
+                  <control:PlatformSlider
+                  x:Name="slider"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds=".5,0,0.8,1"
+                    Maximum="{Binding Duration}"
+                    Value="{Binding Position}">
+                    <Slider.Behaviors>
+                      <behavior:SliderTouchDown Audio="{Binding BindingContext.Audio , Source={x:Reference slider}}"/>
+                      <behavior:SliderTouchUp Audio="{Binding BindingContext.Audio , Source={x:Reference slider}}"/>
+                    </Slider.Behaviors>
+                  </control:PlatformSlider>
+                    <Label 
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="1,0,.1,1" 
+                    TextColor="White"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding DurationText}"/>
+                </AbsoluteLayout>
+            </StackLayout>
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

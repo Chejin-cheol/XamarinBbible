@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm = "clr-namespace:XamarinBible.ViewModel"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+             xmlns:behaviors="clr-namespace:XamarinBible.Behaviors"
+             x:Class="XamarinBible.Page.DetailSermonPage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding SermonViewModel , Source={StaticResource DI} }">
+
+    <ContentPage.Content>
+
+        <RelativeLayout>
+            <StackLayout BackgroundColor="White"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=0,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=0.07,Constant=0}" 
+            Orientation="Horizontal">
+                <control:SermonTabView 
+                       x:Name="sermonTab"
+                       Text="설교" 
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       IsTabbed="{Binding SermonMode}">
+                    <control:SermonTabView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickCommand}" CommandParameter="sermon"></TapGestureRecognizer>
+                    </control:SermonTabView.GestureRecognizers>
+                </control:SermonTabView>
+                <control:SermonTabView 
+                    x:Name="summaryTab"
+                    Text="요약" 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                    IsTabbed="{Binding SummaryMode}">
+                    <control:SermonTabView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickCommand}" CommandParameter="summary"></TapGestureRecognizer>
+                    </control:SermonTabView.GestureRecognizers>
+                </control:SermonTabView>
+            </StackLayout>
+
+            <AbsoluteLayout BackgroundColor="White"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Width,Factor=0,Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                Property=Height,Factor=.08,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression
+                Type=RelativeToParent,Property=Height,Factor=.93,Constant=0}" >
+                <ListView
+                x:Name="sermons"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,.80"
+                HasUnevenRows="True"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                SeparatorVisibility="None"
+                ItemsSource="{Binding Sermons}">
+
+                    <ListView.Behaviors>
+                        <behaviors:SermonListClick Audio="{Binding BindingContext.Audio , Source={x:Reference sermons}}"></behaviors:SermonListClick>
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Date}" FontSize="Medium" TextColor="Black"></Label>
+                                    <Label Text="{Binding Title}" FontSize="Medium" TextColor="Black"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <AbsoluteLayout
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,1,1,.14" 
+                BackgroundColor="#667788">
+                    <control:PlatformSlider 
+                        x:Name="slider"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,.25"
+                        Maximum="{Binding Duration}"
+                        Value="{Binding Position}">
+
+                        <control:PlatformSlider.Behaviors >
+                            <behaviors:SliderTouchDown Audio="{Binding BindingContext.Audio , Source={x:Reference slider}}" />
+                            <behaviors:SliderTouchUp Audio="{Binding BindingContext.Audio , Source={x:Reference slider}}" />
+                        </control:PlatformSlider.Behaviors>
+                    </control:PlatformSlider>
+                    <ImageButton
+                        Source="{Binding PlayerIcon}"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds=".5,.7,.11,.5"
+                        BackgroundColor="Transparent"
+                        Command="{Binding ClickCommand}"
+                        CommandParameter="player"/>
+                </AbsoluteLayout>
+
+                <StackLayout
+                    IsVisible="{Binding SummaryMode}"
+                    BackgroundColor="White"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout
+                        x:Name="titlePadding"
+                        Padding="{Binding TitlePadding}">
+                        <Label Text="{Binding Title}" 
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" 
+                           FontAttributes="Bold" 
+                           TextColor="Black"
+                           FontSize="Large" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="summaryPadding"
+                        Padding="{Binding SummaryPadding}">
+                        <control:SummaryView 
+                           Text="{Binding Summary}"   
+                           TextColor="Black"
+                           FontSize="Medium"
+                           LineBreakMode="WordWrap">
+                            <control:SummaryView.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="NanumMyeongjo-Regular.ttf#Nanum Myeongjo" />
+                                </OnPlatform>
+                            </control:SummaryView.FontFamily>
+                        </control:SummaryView>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout
+                x:Name="wait"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                BackgroundColor="White"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                IsVisible="{Binding WaitMode}">
+                    <ActivityIndicator 
+                    IsRunning="{Binding WaitMode}"/>
+                </StackLayout>
+
+                <control:ShadowLine
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,0.01" />
+            </AbsoluteLayout>
+        </RelativeLayout>
+
+    </ContentPage.Content>
+</ContentPage>

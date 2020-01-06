@@ -1,0 +1,156 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AiForms.Layouts" Version="1.1.0" />
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Plugin.DeviceOrientation" Version="1.0.7" />
+    <PackageReference Include="RestSharp" Version="106.6.7" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Control\BibleOptionMenu.xaml.cs">
+      <DependentUpon>BibleOptionMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Control\BibleSlideUpMenu.xaml.cs">
+      <DependentUpon>BibleSlideUpMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Control\HymnAlbumView.xaml.cs">
+      <DependentUpon>HymnAlbumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Page\DetailBiblePage.xaml.cs">
+      <DependentUpon>DetailBiblePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Page\DetailSermonPage.xaml.cs">
+      <DependentUpon>DetailSermonPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Control\BibleOptionMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\BibleSlideDownMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\BibleViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\HymnAlbumView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\HymnDialView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\HymnListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\SearchListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\SearchPageView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\BibleSlideUpMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DownloadPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\AlbumPlayPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\DetailBiblePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\DetailHymnPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\DetailNotePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\DetailSermonPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\MasterTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\SearchBiblePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Control\SearchGridItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Control\BibleSlideDownMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Control\BibleViewCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Control\SlideUpMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="DownloadPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\DetailBiblePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\DetailHymnPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\DetailNotePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\DetailSermonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\HymnPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\MasterTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\SearchBiblePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\SearchBookpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Page\SearchChapterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interface\native\" />
+  </ItemGroup>
+</Project>

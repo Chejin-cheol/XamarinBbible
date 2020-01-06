@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.BibleViewCell"
+             xmlns:control="clr-namespace:XamarinBible.Control"
+             x:Name="bibleViewCell">
+  <ViewCell.View >
+        <Grid VerticalOptions="Fill" BackgroundColor="{Binding Parent.BindingContext.CellBackgroundColor ,Source={Reference bibleViewCell} }">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="{Binding CellSpace}"  ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.85*" ></ColumnDefinition>
+                <ColumnDefinition Width="0.05*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="{Binding para}" FontSize="Medium"  Grid.Row="0" Grid.Column="0" 
+                   HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="StartAndExpand"
+                   TextColor="{Binding Parent.BindingContext.CellTextColor ,Source={Reference bibleViewCell} }" >
+                <Label.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="NanumMyeongjo-Bold.ttf#Nanum Myeongjo" />
+                    </OnPlatform>
+                </Label.FontFamily>
+            </Label>
+            <control:HighlightLabel Grid.Row="0" Grid.Column="1" x:Name="sentence" Text="{Binding sentence}"  Dash="{Binding dash}" 
+                                    Highlight="{Binding Highlight}" 
+                                    FontSize="{Binding Parent.BindingContext.FontSize ,Source={Reference bibleViewCell} }" 
+                                    TextColor="{Binding Parent.BindingContext.CellTextColor ,Source={Reference bibleViewCell} }"  
+                                    VerticalOptions="StartAndExpand">
+                <control:HighlightLabel.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LabelCommand}" CommandParameter="{Binding Source={x:Reference bibleViewCell} ,Path=Parent.BindingContext}" ></TapGestureRecognizer>
+                </control:HighlightLabel.GestureRecognizers>
+
+                <control:HighlightLabel.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="NanumMyeongjo-Regular.ttf#Nanum Myeongjo" />
+                    </OnPlatform>
+                </control:HighlightLabel.FontFamily>
+                
+            </control:HighlightLabel>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

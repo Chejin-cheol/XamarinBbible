@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.HymnDialView"
+             xmlns:control="clr-namespace:XamarinBible.Control">
+    <ContentView.Content>
+        <AbsoluteLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Padding="20,0,20,0">
+
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,0.2"
+                AbsoluteLayout.LayoutFlags="All">
+                <StackLayout
+                    Orientation="Horizontal"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <Label 
+                       x:Name="number" 
+                       Text="{Binding Number}" 
+                       FontSize="Large" 
+                       TextColor="Black"
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="CenterAndExpand"    />
+                    <Label Text=" 장" 
+                       x:Name="page"    
+                       FontSize="Large" 
+                       TextColor="Gray"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalOptions="CenterAndExpand"    />
+                </StackLayout>
+            </AbsoluteLayout>
+            
+            
+            <Grid 
+                x:Name="dial"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0.7,1,0.7"
+                >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*" />
+                    <RowDefinition Height="0.25*" />
+                    <RowDefinition Height="0.25*" />
+                    <RowDefinition Height="0.25*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.333*" />
+                    <ColumnDefinition Width="0.333*" />
+                    <ColumnDefinition Width="0.333*" />
+                </Grid.ColumnDefinitions>
+
+                <control:HymnDialButton
+                        Source="num_btn_1.png"
+                        Grid.Row="0"
+                        Grid.Column="0" 
+                        BackgroundColor="Transparent"
+                        Padding="10"
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="1"
+                        />
+                <control:HymnDialButton
+                        Source="num_btn_2.png"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"                    
+                        Padding="10"
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="2"                    
+                        />
+                <control:HymnDialButton
+                        Source="num_btn_3.png"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"     
+                        Padding="10"     
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="3"                    
+                        />
+                <control:HymnDialButton
+                        Source="num_btn_4.png"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent" 
+                        Padding="10"       
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="4"                    
+                        />
+                <control:HymnDialButton
+                        Source="num_btn_5.png"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"   
+                        Padding="10"       
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="5"                    
+                    />
+                <control:HymnDialButton
+                        Source="num_btn_6.png"
+                        Grid.Row="1"
+                        Grid.Column="2" 
+                        BackgroundColor="Transparent"          
+                        Padding="10"       
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="6"                    
+                    />
+                <control:HymnDialButton
+                        Source="num_btn_7.png"
+                        Grid.Row="2"
+                        Grid.Column="0" 
+                        BackgroundColor="Transparent"  
+                        Padding="10"          
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="7"                    
+                    />
+                <control:HymnDialButton
+                        Source="num_btn_8.png"
+                        Grid.Row="2"
+                        Grid.Column="1" 
+                        BackgroundColor="Transparent"    
+                        Padding="10"                
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="8"                    
+                    />
+                <ImageButton
+                        Source="num_btn_9.png"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        BackgroundColor="Transparent"    
+                        Padding="10"         
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="9"                    
+                    />
+
+                <ImageButton
+                        Source="num_btn_backspace.png"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"    
+                        Padding="10"     
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="x"                            
+                    />
+                <ImageButton
+                        Source="num_btn_0.png"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"   
+                        Padding="10"         
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="0"                            
+                    />
+                <ImageButton
+                        Source="num_btn_move.png"
+                        Grid.Row="3"
+                        Grid.Column="2" 
+                        BackgroundColor="Transparent"       
+                        Padding="10"     
+                        Command="{Binding ItemClickCommand}"
+                        CommandParameter="check"                            
+                    />
+            </Grid>
+        </AbsoluteLayout>
+
+    </ContentView.Content>
+</ContentView>

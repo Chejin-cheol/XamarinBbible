@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.HymnAlbumView"
+             ItemsSource="{Binding Items}">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell x:Name="album">
+                <StackLayout 
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference album} , Path=Parent.BindingContext.ItemClickCommand}" CommandParameter="{Binding ID}"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label Text="{Binding ID}" TextColor="{Binding Source={x:Reference album} ,Path=Parent.BindingContext.OuterViewModel.TextColor}"></Label>
+                    <Label Text="{Binding AlbumName}" TextColor="{Binding Source={x:Reference album} ,Path=Parent.BindingContext.OuterViewModel.TextColor}" />
+
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>

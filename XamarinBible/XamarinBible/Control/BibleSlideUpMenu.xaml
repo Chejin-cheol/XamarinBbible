@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Control.BibleSlideUpMenu"
+             xmlns:control="clr-namespace:XamarinBible.Control">
+    <ContentView.Content>
+        <StackLayout
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          BackgroundColor="#eeeeee">
+
+            <control:HorizontalListView
+                ItemsSource="{Binding Colors}"
+                HorizontalScrollBarVisibility="Never"
+                HeightRequest="60"
+                ItemHeightRequest="60"
+                ItemWidthRequest="60">
+                <control:HorizontalListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <StackLayout
+                            x:Name="ColorLayout"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand" 
+                            Padding="5">
+                            <Button      
+                                BorderRadius="23"
+                                VerticalOptions="FillAndExpand"
+                                BackgroundColor="{Binding Color}" Command="{Binding ColorSelectCommand}" CommandParameter="{Binding Source={x:Reference ColorLayout} , Path=Parent.BindingContext}">
+                            </Button>
+                        </StackLayout>
+
+                    </DataTemplate>
+
+                </control:HorizontalListView.ItemTemplate>
+
+            </control:HorizontalListView>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

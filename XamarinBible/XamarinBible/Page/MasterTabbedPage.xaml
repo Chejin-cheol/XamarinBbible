@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinBible.Page.MasterTabbedPage"
+             xmlns:page="clr-namespace:XamarinBible.Page"
+             xmlns:vm="clr-namespace:XamarinBible.ViewModel"
+             BarTextColor="{Binding TitleColor}"
+             BarBackgroundColor="{Binding TabBackgroundColor}"
+             BindingContext="{Binding TabbedViewModel , Source={StaticResource DI} }">
+
+
+    <NavigationPage Title="성경" BarBackgroundColor="{Binding TabBackgroundColor}" BarTextColor="{Binding TitleColor}" BackgroundColor="{Binding TabBackgroundColor}"  >
+        <x:Arguments>
+            <page:DetailBiblePage ></page:DetailBiblePage>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="설교" BarBackgroundColor="{Binding TabBackgroundColor}"  BarTextColor="{Binding TitleColor}" BackgroundColor="{Binding TabBackgroundColor}">
+        <x:Arguments>
+            <page:DetailSermonPage></page:DetailSermonPage>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="노트" BarBackgroundColor="{Binding TabBackgroundColor}" BarTextColor="{Binding TitleColor}" BackgroundColor="{Binding TabBackgroundColor}">
+        <x:Arguments>
+            <page:DetailNotePage ></page:DetailNotePage>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="찬양" BarBackgroundColor="{Binding TabBackgroundColor}" BarTextColor="{Binding TitleColor}" BackgroundColor="{Binding TabBackgroundColor}">
+        <x:Arguments>
+            <page:DetailHymnPage ></page:DetailHymnPage>
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background ="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1000">
+
+  <RelativeLayout
+    android:id="@+id/pdfView"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="875" />
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="125"
+    android:background="#343434">
+
+      <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:shape="oval"
+        android:thumb="@android:color/transparent" />
+    
+      <RelativeLayout 
+        android:id="@+id/timerTextGoup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+      <TextView 
+       android:id="@+id/position"
+       android:text="00:00" 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"/>
+       <TextView 
+       android:id="@+id/duration"  
+       android:text="00:00"   
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+      android:id="@+id/playbar"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+       <ImageView
+        android:id="@+id/player"
+        android:src="@drawable/ic_player_play"
+        android:scaleType="fitCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@null"/>
+        <ImageView
+        android:id="@+id/prev"
+        android:src="@drawable/ic_player_prev"
+        android:scaleType="fitCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/player"
+        android:background="@null"/>
+       <ImageView
+        android:id="@+id/next"
+        android:src="@drawable/ic_player_next"
+        android:scaleType="fitCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/player"
+        android:background="@null"/>
+    </RelativeLayout>
+    
+  </LinearLayout>
+  
+</LinearLayout>
